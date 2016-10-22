@@ -111,9 +111,8 @@
 		2C6F27E31DBB97550025E45A /* ELPickerViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2C6F281B1DBBBAA50025E45A /* Example */,
 				2C6F28171DBB97790025E45A /* ELPickerViewController */,
-				2C6F27EA1DBB97550025E45A /* ViewController.h */,
-				2C6F27EB1DBB97550025E45A /* ViewController.m */,
 				2C6F27E41DBB97550025E45A /* Supporting Files */,
 			);
 			path = ELPickerViewController;
@@ -158,6 +157,15 @@
 				2C6F28191DBB98180025E45A /* ELPickerViewController.m */,
 			);
 			name = ELPickerViewController;
+			sourceTree = "<group>";
+		};
+		2C6F281B1DBBBAA50025E45A /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				2C6F27EA1DBB97550025E45A /* ViewController.h */,
+				2C6F27EB1DBB97550025E45A /* ViewController.m */,
+			);
+			name = Example;
 			sourceTree = "<group>";
 		};
 		7058D0DD695B36501D686543 /* Frameworks */ = {
