@@ -15,9 +15,12 @@ ELPickerViewController *controller = [[ELPickerViewController alloc] initWithVie
 [self addChildViewController:controller];
 ```
 If you are using style default, contentStrings are necessary, keys are not necessary.
+
 If you are using other styles, contentStrings and keys should be nil. If you pass contentStrings or keys, it makes no difference.
 
 The pick result will be given back in pickCompletion. The pickCompletion block will be executed exactly when the user tap the choose button.
+
+When choose button tapped, the picker view and its controller will be automatically removed from their parent view / view controller.
 
 ## Summary
 
