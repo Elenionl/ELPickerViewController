@@ -15,16 +15,21 @@
 #define EL_PICKER_SHADE_COLOR [UIColor colorWithRed:51.f/255.f green:51.f/255.f blue:51.f/255.f alpha:0.8f]
 
 
-typedef NS_ENUM(NSInteger, REPickerViewStyle) {
-  REPickerViewStyleDefault,
-  REPickerViewStyleGender,
-  REPickerViewStyleMarriage,
-  REPickerViewStyleDate,
-  REPickerViewStyleYearAndMonth,
-  REPickerViewStyleCountry,
-  REPickerViewStyleIDCardStyle,
+typedef NS_ENUM(NSInteger, ELPickerViewStyle) {
+  ELPickerViewStyleDefault,
+  ELPickerViewStyleGender,
+  ELPickerViewStyleMarriage,
+  ELPickerViewStyleDate,
+  ELPickerViewStyleYearAndMonth,
+  ELPickerViewStyleCountry,
+  ELPickerViewStyleIDCardStyle,
 };
 @interface ELPickerViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
-- (instancetype)initWithViewController:(UIViewController *)viewController PickerViewStyle:(REPickerViewStyle) style contentStrings:(NSArray<NSString *> *)strings keys:(NSArray<NSString *> *) keys pickCompletion:(void (^)(NSString * chosenString, NSString *chosenKey))pickCompletion;
+
+// Buttons
+@property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) UIButton *chooseButton;
+
+- (instancetype)initWithViewController:(UIViewController *)viewController PickerViewStyle:(ELPickerViewStyle) style contentStrings:(NSArray<NSString *> *)strings keys:(NSArray<NSString *> *) keys pickCompletion:(void (^)(NSString * chosenString, NSString *chosenKey))pickCompletion;
 
 @end

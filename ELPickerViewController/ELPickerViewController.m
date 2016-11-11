@@ -13,14 +13,11 @@
 // Picker View
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) UIDatePicker *datePickerView;
-// Buttons
-@property (nonatomic, strong) UIButton *cancelButton;
-@property (nonatomic, strong) UIButton *chooseButton;
 // Other Views
 @property (nonatomic, strong) UIView *frontView;
 // Settings
 @property (nonatomic, getter=isConstrainsSetup) BOOL constrainsSutup;
-@property (nonatomic) REPickerViewStyle style;
+@property (nonatomic) ELPickerViewStyle style;
 @property(nonatomic,copy) void (^pickCompletion) (NSString * chosenString, NSString *chosenKey);
 // Title Array
 @property (nonatomic, strong) NSArray<NSString *> *titles;
@@ -36,7 +33,7 @@
 
 @implementation ELPickerViewController
 
-- (instancetype)initWithViewController:(UIViewController *)viewController PickerViewStyle:(REPickerViewStyle)style contentStrings:(NSArray<NSString *> *)strings keys:(NSArray<NSString *> *)keys pickCompletion:(void (^)(NSString *, NSString *))pickCompletion {
+- (instancetype)initWithViewController:(UIViewController *)viewController PickerViewStyle:(ELPickerViewStyle)style contentStrings:(NSArray<NSString *> *)strings keys:(NSArray<NSString *> *)keys pickCompletion:(void (^)(NSString *, NSString *))pickCompletion {
   
   if (self = [super init]) {
     self.style = style;
@@ -74,7 +71,7 @@
   [self.view addSubview:self.frontView];
   [self.frontView addSubview:self.chooseButton];
   [self.frontView addSubview:self.cancelButton];
-  if (self.style == REPickerViewStyleDate) {
+  if (self.style == ELPickerViewStyleDate) {
     [self.frontView addSubview:self.datePickerView];
   }
   else {
@@ -97,7 +94,7 @@
       make.width.equalTo(@(EL_PICKER_LENGTH(6)));
       make.height.equalTo(@(EL_PICKER_LENGTH(1.0)));
     }];
-    if (self.style == REPickerViewStyleDate) {
+    if (self.style == ELPickerViewStyleDate) {
       [self.datePickerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(0));
         make.top.equalTo(self.cancelButton.mas_bottom);
@@ -119,7 +116,7 @@
 #pragma mark - Lazy Load
 
 - (UIPickerView *)pickerView {
-  if (!_pickerView && !(self.style == REPickerViewStyleDate)) {
+  if (!_pickerView && !(self.style == ELPickerViewStyleDate)) {
     _pickerView = [[UIPickerView alloc] init];
     _pickerView.backgroundColor = [UIColor clearColor];
     _pickerView.delegate = self;
@@ -129,7 +126,7 @@
 }
 
 - (UIDatePicker *)datePickerView {
-  if (!_datePickerView && (self.style == REPickerViewStyleDate)) {
+  if (!_datePickerView && (self.style == ELPickerViewStyleDate)) {
     _datePickerView = [[UIDatePicker alloc] init];
     _datePickerView.backgroundColor = [UIColor clearColor];
     _datePickerView.datePickerMode = UIDatePickerModeDate;
@@ -173,18 +170,18 @@
   if (!_titles) {
     NSArray *titles;
     switch (self.style) {
-      case REPickerViewStyleDefault: {
+      case ELPickerViewStyleDefault: {
         titles = self.defaultTitles;
         break;
       }
-      case REPickerViewStyleGender: {
+      case ELPickerViewStyleGender: {
         titles = @[
                    @"Male",
                    @"Female",
                    ];
         break;
       }
-      case REPickerViewStyleMarriage: {
+      case ELPickerViewStyleMarriage: {
         titles = @[
                    @"Unmarried",
                    @"Married",
@@ -194,7 +191,7 @@
                    ];
         break;
       }
-      case REPickerViewStyleCountry: {
+      case ELPickerViewStyleCountry: {
         titles = @[
                    @"Macau",
                    @"Hong Kong",
@@ -277,7 +274,7 @@
                    @"Egypt",
                    ];
         break;
-      case REPickerViewStyleYearAndMonth: {
+      case ELPickerViewStyleYearAndMonth: {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyy";
         NSString *currentYear = [formatter stringFromDate:[NSDate date]];
@@ -303,7 +300,7 @@
       }
         break;
       }
-      case REPickerViewStyleIDCardStyle: {
+      case ELPickerViewStyleIDCardStyle: {
         titles = @[
                    @"ID Card",
                    @"Driver License",
@@ -316,12 +313,13 @@
         
     }
     _titles = titles;
-    if (self.style == REPickerViewStyleYearAndMonth) {
+    if (self.style == ELPickerViewStyleYearAndMonth) {
       self.chosenSubTitle = @"01";
       self.chosenTitle = [self.titles firstObject];
     }
     else {
       self.chosenTitle = [self.titles firstObject];
+      self.chosenKey = [self.defaultKeys firstObject];
     }
   }
   return _titles;
@@ -332,7 +330,7 @@
 - (void)didTapChooseButton:(UIButton *) button {
   NSLog(@"choose");
   if (_chosenTitle.length) {
-    if (self.style == REPickerViewStyleYearAndMonth) {
+    if (self.style == ELPickerViewStyleYearAndMonth) {
       NSString *date = [NSString stringWithFormat:@"%@/%@", self.chosenSubTitle, self.chosenTitle];
       self.pickCompletion(date, nil);
     }
@@ -378,7 +376,7 @@
 #pragma mark - UIPickerViewDelegate DataSource
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-  if (self.style == REPickerViewStyleYearAndMonth) {
+  if (self.style == ELPickerViewStyleYearAndMonth) {
     switch (component) {
       case 0:
         return self.titles.count;
@@ -392,14 +390,14 @@
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-  if (self.style == REPickerViewStyleYearAndMonth) {
+  if (self.style == ELPickerViewStyleYearAndMonth) {
     return 2;
   }
   return 1;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-  if (self.style == REPickerViewStyleYearAndMonth) {
+  if (self.style == ELPickerViewStyleYearAndMonth) {
     switch (component) {
       case 0:
         return self.titles[row];
@@ -413,7 +411,7 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-  if (self.style == REPickerViewStyleYearAndMonth) {
+  if (self.style == ELPickerViewStyleYearAndMonth) {
     switch (component) {
       case 0:
         self.chosenTitle = self.titles[row];
@@ -427,7 +425,7 @@
   }
   else {
     self.chosenTitle = self.titles[row];
-    if (self.style == REPickerViewStyleDefault) {
+    if (self.style == ELPickerViewStyleDefault) {
       self.chosenKey = self.defaultKeys[row];
     }
   }

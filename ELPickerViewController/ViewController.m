@@ -180,7 +180,7 @@
 #pragma mark - Button Tapped
 
 - (void)showDefaultPickerViewByButton:(UIButton *)sender {
-  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:REPickerViewStyleDefault contentStrings:@[@"choose 1", @"choose 2", @"choose 3", @"choose 4",] keys:@[@"1", @"2", @"3", @"4",] pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
+  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:ELPickerViewStyleDefault contentStrings:@[@"choose 1", @"choose 2", @"choose 3", @"choose 4",] keys:@[@"1", @"2", @"3", @"4",] pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
     [sender setTitle:chosenString forState:UIControlStateNormal];
     self.keyLabel.text = chosenKey;
   }];
@@ -189,7 +189,7 @@
 }
 
 - (void)showGenderPickerViewByButton:(UIButton *)sender {
-  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:REPickerViewStyleGender contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
+  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:ELPickerViewStyleGender contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
     [sender setTitle:chosenString forState:UIControlStateNormal];
   }];
   [self.view addSubview:controller.view];
@@ -197,7 +197,7 @@
 }
 
 - (void)showMarriagePickerViewByButton:(UIButton *)sender {
-  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:REPickerViewStyleMarriage contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
+  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:ELPickerViewStyleMarriage contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
     [sender setTitle:chosenString forState:UIControlStateNormal];
   }];
   [self.view addSubview:controller.view];
@@ -205,7 +205,7 @@
 }
 
 - (void)showDatePickerViewByButton:(UIButton *)sender {
-  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:REPickerViewStyleDate contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
+  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:ELPickerViewStyleDate contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
     [sender setTitle:chosenString forState:UIControlStateNormal];
   }];
   [self.view addSubview:controller.view];
@@ -213,7 +213,7 @@
 }
 
 - (void)showYearAndMonthPickerViewByButton:(UIButton *)sender {
-  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:REPickerViewStyleYearAndMonth contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
+  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:ELPickerViewStyleYearAndMonth contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
     [sender setTitle:chosenString forState:UIControlStateNormal];
   }];
   [self.view addSubview:controller.view];
@@ -221,7 +221,7 @@
 }
 
 - (void)showCountryPickerViewByButton:(UIButton *)sender {
-  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:REPickerViewStyleCountry contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
+  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:ELPickerViewStyleCountry contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
     [sender setTitle:chosenString forState:UIControlStateNormal];
   }];
   [self.view addSubview:controller.view];
@@ -229,7 +229,7 @@
 }
 
 - (void)showIDCardPickerViewByButton:(UIButton *)sender {
-  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:REPickerViewStyleIDCardStyle contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
+  ELPickerViewController *controller = [[ELPickerViewController alloc] initWithViewController:self PickerViewStyle:ELPickerViewStyleIDCardStyle contentStrings:nil keys:nil pickCompletion:^(NSString *chosenString, NSString *chosenKey) {
     [sender setTitle:chosenString forState:UIControlStateNormal];
   }];
   [self.view addSubview:controller.view];
